@@ -1,0 +1,55 @@
+package Pageoject;
+
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import utilities.CommonMethods;
+import utilities.Constants;
+import utilities.Driver;
+
+public class Homepage {
+	
+	   WebDriver driver = Driver.getDriver();
+	   CommonMethods cm = new CommonMethods();
+
+	    public Homepage() {
+	        PageFactory.initElements(driver, this);
+	    }
+
+	    @FindBy(xpath = "//div[@id='nav-tools']/a[2]")
+	    public WebElement signinMenu;
+	    
+	    @FindBy(xpath = "//input[@id='ap_email']")
+	    public WebElement signinEmailInput;
+	    
+	    @FindBy(xpath = "//input[@id='continue']")
+	    public WebElement continueBtn;
+	    
+	    @FindBy(xpath = "//input[@id='ap_password']")
+	    public WebElement signinPasswordInput;
+	    
+	   
+	    @FindBy(xpath = "//input[@id='signInSubmit']")
+	    public WebElement signinBtn;
+	    
+	    @FindBy(xpath = "//input[@id='twotabsearchtextbox']")
+	    public WebElement searchInput;
+	    
+	    @FindBy(xpath = "//input[@id='nav-search-submit-button']")
+	    public WebElement goSearchBtn;
+	    
+	    
+	    public void login(String EmailUsername, String password) {
+	    	signinMenu.click();
+	    	signinEmailInput.sendKeys(EmailUsername);
+	    	continueBtn.click();
+	    	signinPasswordInput.sendKeys(password);
+	    	signinBtn.click();
+	    	Assert.assertEquals(driver.getCurrentUrl(),Constants.amazonHomepageAfterSignin);
+	    }
+	
+	
+}
