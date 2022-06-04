@@ -13,24 +13,23 @@ import utilities.Driver;
 public class LoginTest {
 
 	WebDriver driver;
-    Homepage homepage = new Homepage();
+	Homepage homepage = new Homepage();
 
+	@BeforeSuite
+	public void goToAmazonSite() {
+		WebDriverManager.chromedriver().setup();
+		driver = Driver.getDriver();
+	}
 
-    @BeforeSuite
-    public void goToAmazonSite() {
-        WebDriverManager.chromedriver().setup();
-        driver = Driver.getDriver();
-    }
-    
-    
-    @Test
-    public void loginToHomepage() {
-    	homepage.login(ConfigurationProperties.getProperty("EmailUsername"), ConfigurationProperties.getProperty("password"));
-   	
-    }
-    
-    @AfterClass
-    public void teardown() {
-        driver.quit();
-    }
+	@Test
+	public void loginToHomepage() {
+		homepage.login(ConfigurationProperties.getProperty("EmailUsername"),
+				ConfigurationProperties.getProperty("password"));
+
+	}
+
+	@AfterClass
+	public void teardown() {
+		driver.quit();
+	}
 }

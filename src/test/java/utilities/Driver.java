@@ -26,7 +26,7 @@ public class Driver {
 				driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 				break;
 
-			case "Chrome":
+			case "chrome":
 				WebDriverManager.chromedriver().setup();
 				driver = new ChromeDriver();
 				driver.manage().window().maximize();	
@@ -50,6 +50,7 @@ public class Driver {
 	public static void tearDown() {
 		if (driver != null) {
 			driver.close();
+			driver = null;
 		}
 	}
 
